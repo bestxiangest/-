@@ -1,0 +1,79 @@
+.youce{
+	background:pink;
+	position:fixed;
+	right:-50px;
+	top:200px;
+	width:100px;
+	height:400px;
+	transition:right 1s;
+	border:lightpink 1px solid;
+	border-radius:20px;
+}
+
+.youce:hover{
+	right:0px;
+	transition:right 1s;
+}
+
+.yc{
+	color:pink;
+	background:pink;
+	text-align:center;
+	line-height:45px;
+	text-decoration:none;
+	transition:color 1s;
+	font-size:20px;
+}
+.yc:hover{
+	color:white;
+	transition:color 1s;
+}
+
+
+/*左侧图片*/
+
+
+#picture{
+	background:pink;
+	position:fixed;
+	left:-450px;
+	top:200px;
+	width:500px;
+	height:300px;
+	transition:right 1s;
+	border:lightpink 1px solid;
+	border-radius:20px;
+}
+
+
+#bottompicture{
+	background:pink;
+	position:fixed;
+	left:580px;
+	bottom:-648px;
+	width:700px;
+	height:698px;
+	transition:bottom 1s;
+	border:lightpink 1px solid;
+	border-radius:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>暴走的方块</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="css/fang.css">
+	</head>
+	<body>
+		<div class="control">
+			<p href="#" style="font-size: 22px;line-height: 20px;font-family: '华文行楷'; " class="daoju">开挂模式</p>
+			<p href="#" id="jiasu" class="daoju">2.25秒12m加速</p>
+			<p href="#" id="jingzhi" class="daoju">1.5秒暂停</p><br/><br/><br/>
+			<p href="#" class="daoju jia" style="font-size: 20px;line-height: 5px;font-family: '华文新魏'; " >赞助商：</p>
+			<p href="#" class="daoju jia" style="font-size: 20px;line-height: 5px;font-family: '华文新魏'; " >张祖宁</p>
+			<br/>
+			<p href="#" class="daoju" style="font-size: 12px;line-height: 15px;font-family: '华文新魏'; ">每道具花费5金</p>
+		</div>
+		<h3 id="money"> </h3>
+		<div class="xuanze">
+			<p>
+				选择一个会赢的方块
+			</p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="xz" id="redf" />
+			红方块
+			<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="xz" id="yellowf" />
+			黄方块
+			<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="xz" id="skybluef" />
+			蓝方块
+			<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="xz" id="lightgreenf" />
+			绿方块
+			<button id="button">
+				确定
+			</button>
+		</div>
+		<div class="container">
+			<div id="red" class="block"></div>
+			<div id="yellow" class="block"></div>
+			<div id="skyblue" class="block"></div>
+			<div id="lightgreen" class="block"></div>
+		</div>
+		<a onclick="gohistory()" href="#">重新游戏</a>
+		<script src="js/fangjs.js"></script>
+		<script src="js/daoju.js"></script>
+	</body>
+</html>

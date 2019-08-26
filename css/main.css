@@ -1,0 +1,119 @@
+* {
+	background: lightyellow;
+}
+.body{
+	background:url(../images/wybj.jpg) 100% 100% no-repeat;
+}
+.container {/*总容框*/
+	width: 870px;
+	height: 900px;
+	background: white;
+	margin: 30px auto;
+	border: gray 1px solid;
+	border-radius: 20px;
+	display:none;
+}
+.tx {/*头像*/
+	margin: 30px 30px;
+	border: #CCCCCC 0.5px solid;
+	border-radius: 50%;
+	width: 75px;
+	height: 75px;
+	background: url(../images/tx.jpg) no-repeat 100% 100%;
+	float: left;
+}
+.text {/*文本*/
+	width: 450px;
+	height: 300px;
+	border: gray 0.5px solid;
+	margin-left: 120px;
+	margin-top: 15px;
+	font-family:"楷体";
+	line-height: 25px;
+}
+#gg {/*右下角弹窗*/
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	width: 150px;
+	height: 150px;
+	background: white;
+	text-align: center;
+	line-height: 50px;
+}
+#xm {/*姓名*/
+	background: white;
+	width: auto;
+	height: auto;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+}
+.gb {/*关闭*/
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	background: white;
+	line-height: 0px;
+}
+.control {/*左侧跳转栏*/
+	width: 150px;
+	height: 650px;
+	background: white;
+	float: left;
+	margin-left: 300px;
+	margin-top: 10px;
+	border: gray 1px solid;
+	border-radius: 20px;
+}
+a {
+	display: block;
+	text-align: center;
+	color: black;
+	font-family: "楷体";
+	font-size: 25px;
+	background: white;
+	margin: 10px;
+	line-height: 300%;
+	margin:25px 0px;
+}
+.kongzhi:hover{
+	color:gray;
+}
+.control a:hover{
+	color:hotpink;
+	transform:scale(1.2);
+	border:2px groove gold;
+	border-radius:8px;
+}
+
+@keyframes h1color{
+	0%{
+		color:red;
+		transition:color 2s;
+	}
+	25%{
+		color:orange;
+		transition:color 2s;
+	}
+	50%{
+		color:yellow;
+		transition:color 2s;
+	}
+	75%{
+		color:green;
+		transition:color 2s;
+	}
+	100%{
+		color:blue;
+		transition:color 2s;
+	}
+}
+#h1 {
+	z-index:999;
+	color: pink;
+	text-align: center;
+	animation:h1color 2s infinite;
+}
+
+

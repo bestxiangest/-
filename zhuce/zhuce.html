@@ -1,0 +1,51 @@
+<!DOCTYPE  html>
+<html>
+	<head>
+		<title>注册</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="css/zhuce.css">
+	</head>
+	<body>
+		<div class="dl">
+			<h4>注册</h4>
+			<input type="text" placeholder="请输入账号" id="zhanghao"/>
+			<br />
+			<input type="password" placeholder="密码" id="mima1"/>
+			<br />
+			<input type="password" placeholder="再次输入密码" id="mima2"/>
+			<br />
+			<input type="button" placeholder="注册" class="btn" value="注册"/>
+
+		</div>
+		<div id="denglu">
+
+		</div>
+		<script>
+			var zhanghao = document.getElementById("zhanghao");
+			var mima1 = document.getElementById("mima1");
+			var mima2 = document.getElementById("mima2");
+			var zhuce = document.getElementsByClassName("btn")[0];
+
+			zhuce.onclick = function() {
+				if (mima1.value != "" && mima2.value != "") {
+					if (mima1.value == mima2.value) {
+						if (zhanghao.value != "") {
+							localStorage.setItem("zh", zhanghao.value);
+							localStorage.setItem("mm", mima2.value);
+							//alert(localStorage.getItem("zh"));
+							//alert(localStorage.getItem("mm"));
+							alert("注册成功！");
+							window.opener = null;
+							window.open('', '_self');
+							window.close();
+						}
+					}
+				} else {
+					alert("请输入密码");
+				}
+
+			}
+
+		</script>
+	</body>
+</html>

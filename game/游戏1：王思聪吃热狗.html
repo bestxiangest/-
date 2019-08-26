@@ -1,0 +1,287 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="gbk">
+		<title>热狗大战</title>
+	</head>
+
+	<body>
+		<div id="stage" style="margin: 0 auto; width: 1000px; height: 600px; text-align: center; vertical-align: middle" >
+			<canvas id="canvas" style="border:2px solid black;" width="1000" height="600">
+				不支持画板对象
+			</canvas>
+		</div>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			//背景图片
+			var bg = new Image();
+			bg.src = "images/bg.jpg";
+			//热狗图片
+			var hd = new Image();
+			hd.src = "images/hotdog.png";
+			//热狗图片
+			var bhd = new Image();
+			bhd.src = "images/hotdog2.png";
+			//英雄图片
+			var h = new Image();
+			h.src = "images/hero.png";
+			//游戏结束图片
+			var end = new Image();
+			end.src = "images/end.jpg";
+			//计分板图片
+			var tip = new Image();
+			tip.src = "images/bullet_tip.png";
+			//计时板图片
+			var time_tip = new Image();
+			time_tip.src = "images/time_tip.png";
+
+			//添加按键事件
+
+			var x = 0;
+			var y = 0;
+			var tip1_x = 800;
+			var tip1_y = 5;
+			var tip2_x = 25;
+			var tip2_y = 25;
+			var hotdog = [];
+			var score = 0;
+			var time = 30;
+			var n = 0;
+			var btime = 0;
+			var name = prompt("请输入姓氏");
+			var t = setInterval(function() {
+				ctx.drawImage(bg, x, y);
+				ctx.drawImage(tip, tip1_x, tip1_y);
+				ctx.drawImage(time_tip, tip2_x, tip2_y);
+				write();
+				componentEnter();
+
+				for (var i = 0; i < hotdog.length; i++) {
+					hotdog[i].paint(ctx);
+					hotdog[i].move();
+				}
+				hero.paint(ctx);
+
+				Countdown();
+				componentDelete();
+				checkHit();
+				if (time <= 30 && time > 0) {
+					ctx.fillStyle = "green";
+					ctx.fillText("不要过线哦",450,600-150)
+					for (var i = 0; i < 1000; i = i + 10) {
+						ctx.fillText("=", i, 600 - 113);
+					}
+					if (hero.x < 1000 - 150) {
+						ctx.fillStyle = "white";
+						ctx.font = "20px 微软雅黑"
+						ctx.fillText(name + "老师", hero.x + 85, hero.y)
+					}
+					if (hero.x > 1000 - 150) {
+						ctx.fillStyle = "white";
+						ctx.font = "20px 微软雅黑"
+						ctx.fillText(name + "老师", hero.x - 35, hero.y)
+					}
+				}
+			}, 10);
+
+			function Hero(x, y, img) {
+				this.height = 133;
+				this.weight = 80;
+				this.x = x;
+				this.y = y;
+				this.img = img;
+				this.paint = function(ctx) {
+					ctx.drawImage(this.img, this.x, this.y);
+				}
+				this.move = function(m) {
+					this.x = this.x + m;
+				}
+			}
+
+			var hero = new Hero(450, 450, h);
+			function Hotdog(img) {
+				this.height = 55;
+				this.weight = 30;
+				this.x = Math.random() * 1000 - this.weight;
+				this.y = -this.height;
+				this.img = img;
+				this.canDelete = false;
+				this.paint = function(ctx) {
+					ctx.drawImage(this.img, this.x, this.y);
+				}
+				this.move = function() {
+					this.y = this.y + 2;
+				}
+				this.hit = function(c) {
+					return this.y >= 450 && c.x < this.x && c.x + c.weight > this.x + this.weight;
+				}
+				this.outOfBounds = function() {
+					return this.y >= 600;
+				}
+			}
+
+			function Hotdog2(img) {
+				this.height = 55;
+				this.weight = 30;
+				this.x = Math.random() * 1000 - this.weight;
+				this.y = -this.height;
+				this.img = img;
+				this.canDelete = false;
+				this.paint = function(ctx) {
+					ctx.drawImage(this.img, this.x, this.y);
+				}
+				this.move = function() {
+					this.y = this.y + 2;
+				}
+				this.hit = function(c) {
+					return this.y >= 450 && c.x < this.x && c.x + c.weight > this.x + this.weight;
+				}
+				this.outOfBounds = function() {
+					return this.y >= 600;
+				}
+			}
+
+			function isActionTime(lastTime, interval) {
+				if (lastTime == 0) {
+					return true;
+				}
+				var currentTime = new Date().getTime();
+				return currentTime - lastTime >= interval;
+			}
+
+			var lastTime = 0;
+			var interval = 500;
+			function componentEnter() {
+				if (! isActionTime(lastTime, interval)) {
+					return;
+				}
+				lastTime = new Date().getTime();
+				if (Math.random() > 0.2) {
+					hotdog[hotdog.length] = new Hotdog(hd);
+				} else {
+					hotdog[hotdog.length] = new Hotdog2(bhd);
+				}
+
+			}
+
+			function write() {
+				ctx.font = "30px 华文琥珀";
+				ctx.fillStyle = "white";
+				if (score < 10) {
+					ctx.fillText(score, 888, 63);
+				} else {
+					ctx.fillText(score, 878, 63);
+				}
+				if (time >= 10) {
+					ctx.fillText(time, 37, 65);
+				} else {
+					ctx.fillText(time, 45, 65);
+				}
+
+			}
+
+			function Countdown() {
+				n++;
+				if (n % 100 == 0) {
+					time--;
+				}
+				if (time <= 0) {
+					clearInterval(t);
+					ctx.drawImage(end, 0, 0);
+					ctx.font = "50px 华文琥珀 ";
+					if (score < 10) {
+						ctx.fillText(score, 483, 435);
+					} else {
+						ctx.fillText(score, 465, 432);
+					}
+					if(score>=40&&score<50){
+						alert("奖励：棒棒糖！");
+					}
+					if(score<40&&score>=30){
+						alert("奖励：水果!");
+					}
+					if(score>=50){
+						alert("奖励：随便选！");
+					}
+
+				}
+			}
+
+			//////////////////////////////////////////////////////
+			function checkOut() {
+				if (hero.x >= 820 && e.keyCode == keys[1]) {
+					hero.x = hero.x - 30;
+				}
+				if (hero.x < 0 && e.keyCode == keys[0]) {
+					hero.x = hero.x + 30;
+				}
+			}
+
+			function componentDelete() {
+				var ary = [];
+				for (var i = 0; i < hotdog.length; i++) {
+					if (!(hotdog[i].canDelete || hotdog[i].outOfBounds())) {
+						ary[ary.length] = hotdog[i];
+					}
+				}
+				hotdog = ary;
+			}
+
+			//检查碰撞
+			function checkHit() {
+				for (var i = 0; i < hotdog.length; i++) {
+					var bang = hotdog[i].hit(hero);
+					if (bang) {
+						if (hotdog[i].img == bhd) {
+							btime = 6;
+							hotdog[i].canDelete = true;
+							score = score-3;
+						} else {
+							hotdog[i].canDelete = true;
+							score++
+						}
+					}
+				}
+			}
+
+			var keys = [37, 39]
+			//按键事件
+			document.onkeydown = function(e) {
+				//左键
+				if (e.keyCode == keys[0]) {
+					hero.move(-30);
+				}
+				//右键
+				if (e.keyCode == keys[1]) {
+					hero.move(30);
+				}
+
+			}
+			setInterval(function() {
+				if (btime > 0) {
+					keys = [39, 37]
+					btime--;
+				} else {
+					keys = [37, 39]
+
+				}
+			}, 1000)
+			function getPointOnCanvas(x, y) {
+				var bbox = canvas.getBoundingClientRect();
+				return {
+					x : x - bbox.left,
+					y : y - bbox.top
+				};
+			}
+
+
+			canvas.onmousemove = function(e) {
+				var mpoint = getPointOnCanvas(e.x, e.y);
+				hero.x = mpoint.x - 55 / 2;
+				hero.y = mpoint.y - 30 / 2;
+			}
+			///////////////////////////////////////////////////////////////////////////////
+		</script>
+	</body>
+</html>

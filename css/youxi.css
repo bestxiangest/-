@@ -1,0 +1,16 @@
+#game{
+	position:absolute;
+	top:-400px;
+	left:850px;
+	font-size:50px;
+	color:#F2DC9E;
+}
+#stage1{
+	display:none;
+}
+.yx{
+	background:lightyellow;
+	text-decoration:none;
+	font-size:25px;
+	font-family: "微软雅黑";
+}

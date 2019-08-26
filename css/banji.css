@@ -1,0 +1,24 @@
+.zuozhe{
+	display:none;
+	width:200px;
+	height:200px;
+	border:gray 1px solid;
+	border:20px;
+	/*position:absolute;
+	left:400px;
+	top:400px;*/
+	margin:40000px auto;
+}
+
+
+
+.bj{
+	display:none;
+	width:300px;
+	height:70px;
+	border:gray 1px solid;
+	border-radius:20px;
+	margin:30px auto;
+	padding-left:20px;
+	padding-left:50px;
+}
